@@ -1,4 +1,9 @@
-const printEnvs = async () => {
+type PrintEnvsOptions = {
+  // 環墿変数のプレフィクスの指定
+  prefix?: string;
+};
+
+const printEnvs = async (options: PrintEnvsOptions) => {
   const command = new Deno.Command("printenv");
   const { stdout } = await command.output();
   const decoded = new TextDecoder().decode(stdout);
@@ -8,6 +13,10 @@ const printEnvs = async () => {
 
   // 配列を出力
   for (const env of envs) {
+    if (options.prefix && !env.startsWith(options.prefix)) {
+      continue;
+    }
+
     console.log(env);
   }
 };
