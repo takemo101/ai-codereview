@@ -1,9 +1,12 @@
 type PrintEnvsOptions = {
-  // 環墿変数のプレフィクスの指定
+  /**
+   * 環境変数名の接頭辞
+   * この接頭辞で始まる環墩変数のみを出力する
+   */
   prefix?: string;
 };
 
-const printEnvs = async (options: PrintEnvsOptions) => {
+const printEnvs = async (options: PrintEnvsOptions = {}) => {
   const command = new Deno.Command("printenv");
   const { stdout } = await command.output();
   const decoded = new TextDecoder().decode(stdout);
@@ -23,5 +26,7 @@ const printEnvs = async (options: PrintEnvsOptions) => {
 
 // Learn more at https://docs.deno.com/runtime/manual/examples/module_metadata#concepts
 if (import.meta.main) {
-  await printEnvs();
+  await printEnvs({
+    prefix: "VSCODE_GIT_ASKPASS",
+  });
 }
