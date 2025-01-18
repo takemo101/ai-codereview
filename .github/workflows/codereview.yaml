@@ -13,11 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: AI Code Review
-        uses: theboringhumane/cori-ai@latest
+        uses: theboringhumane/cori-ai@1.2.11
         with:
           # Choose your preferred provider
           provider: 'gemini'  # or 'openai', 'groq', 'mistral'
           google_api_key: ${{ secrets.GOOGLE_API_KEY }}
+          model: 'gemini-1.5-flash'
           github_token: ${{ secrets.GITHUB_TOKEN }}
           extra_prompt: |
             ## 言語
