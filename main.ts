@@ -3,10 +3,10 @@ type PrintEnvsOptions = {
    * 環境変数名の接頭辞
    * この接頭辞で始まる環墩変数のみを出力する
    */
-  prefix?: string;
+  prefix: string | undefined;
 };
 
-const printEnvs = async (options: PrintEnvsOptions = {}) => {
+const printEnvs = async (options: PrintEnvsOptions) => {
   const command = new Deno.Command("printenv");
   const { stdout } = await command.output();
   const decoded = new TextDecoder().decode(stdout);
