@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: AI Code Review
-        uses: theboringhumane/cori-ai@v1.2.0
+        uses: theboringhumane/cori-ai@latest
         with:
           # Choose your preferred provider
           provider: 'gemini'  # or 'openai', 'groq', 'mistral'
